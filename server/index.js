@@ -14,8 +14,8 @@ async function connectDB() {
     await client.connect();
     console.log('Connected to MongoDB');
 
-    const db = client.db('nome_do_banco');
-    collection = db.collection('nome_da_coleção');
+    const db = client.db('Mineradora');
+    collection = db.collection('matriculas');
 
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
@@ -30,7 +30,7 @@ app.use(express.json());
 app.post('/matriculas', async (req, res) => {
   try {
     const novaMatricula = req.body;
-
+    const matriculas = await collection.find().toArray();
     //complete o código
     
     res.status(201).json({ message: 'Matrícula criada com sucesso', matriculaId: result.insertedId });
@@ -41,6 +41,7 @@ app.post('/matriculas', async (req, res) => {
 
 app.get('/matriculas', async (req, res) => {
   try {
+    const matricula = await collection.findOne({ _id: newId });
     //complete o código
     res.status(200).json(matriculas);
   } catch (err) {
@@ -54,7 +55,7 @@ app.get('/matriculas/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
-
+    const result = await collection.insertOne(novaMatricula);
     //complete o código
 
     if (!matricula) {
@@ -72,7 +73,7 @@ app.put('/matriculas/:id', async (req, res) => {
     const id = req.params.id;
     const newId =  new ObjectId(id);
     const atualizacao = req.body;
-
+    const result = await collection.updateOne( { _id: newId }, { $set: atualizacao });
     //complete o código
 
     if (result.matchedCount === 0) {
@@ -89,7 +90,7 @@ app.delete('/matriculas/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
-
+    const result = await collection.deleteOne({ _id: newId });
     //complete o código
 
     if (result.deletedCount === 0) {
