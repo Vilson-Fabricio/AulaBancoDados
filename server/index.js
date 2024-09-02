@@ -15,7 +15,7 @@ async function connectDB() {
     console.log('Connected to MongoDB');
 
     const db = client.db('Mineradora');
-    collection = db.collection('matriculas');
+    collection = db.collection('minerios');
 
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
@@ -27,10 +27,10 @@ connectDB();
 app.use(express.json()); 
 
 
-app.post('/matriculas', async (req, res) => {
+app.post('/minerios', async (req, res) => {
   try {
-    const novaMatricula = req.body;
-    const matriculas = await collection.find().toArray();
+    const novoMinerios = req.body;
+    const minerios = await collection.find().toArray();
     //complete o código
     
     res.status(201).json({ message: 'Matrícula criada com sucesso', matriculaId: result.insertedId });
@@ -39,36 +39,36 @@ app.post('/matriculas', async (req, res) => {
   }
 });
 
-app.get('/matriculas', async (req, res) => {
+app.get('/minerios', async (req, res) => {
   try {
-    const matricula = await collection.findOne({ _id: newId });
+    const minerios = await collection.findOne({ _id: newId });
     //complete o código
-    res.status(200).json(matriculas);
+    res.status(200).json(minerios);
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao buscar matrículas', error: err });
+    res.status(500).json({ message: 'Erro ao buscar minerios', error: err });
   }
 });
 
 const { ObjectId } = require('mongodb');
 
-app.get('/matriculas/:id', async (req, res) => {
+app.get('/minerios/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
-    const result = await collection.insertOne(novaMatricula);
+    const result = await collection.insertOne(novoMinerios);
     //complete o código
 
-    if (!matricula) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+    if (!minerios) {
+      res.status(404).json({ message: 'Minerio não encontrado' });
     } else {
-      res.status(200).json(matricula);
+      res.status(200).json(minerios);
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao buscar matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao buscar minerio', error: err });
   }
 });
 
-app.put('/matriculas/:id', async (req, res) => {
+app.put('/minerios/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
@@ -77,16 +77,16 @@ app.put('/matriculas/:id', async (req, res) => {
     //complete o código
 
     if (result.matchedCount === 0) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+      res.status(404).json({ message: 'Minerio não encontrado' });
     } else {
-      res.status(200).json({ message: 'Matrícula atualizada com sucesso' });
+      res.status(200).json({ message: 'Minerio atualizado com sucesso' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao atualizar matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao atualizar minerio', error: err });
   }
 });
 
-app.delete('/matriculas/:id', async (req, res) => {
+app.delete('/minerios/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
@@ -94,12 +94,12 @@ app.delete('/matriculas/:id', async (req, res) => {
     //complete o código
 
     if (result.deletedCount === 0) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+      res.status(404).json({ message: 'Minerio não encontrado' });
     } else {
-      res.status(200).json({ message: 'Matrícula excluída com sucesso' });
+      res.status(200).json({ message: 'Minerio excluído com sucesso' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao excluir matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao excluir minerio', error: err });
   }
 });
 
