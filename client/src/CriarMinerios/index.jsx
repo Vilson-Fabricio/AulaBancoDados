@@ -38,10 +38,10 @@ export default function CreateMinerios() {
   return (
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
-      <h2>Cadastrar Minerio</h2>
+      <h2>Cadastrar Minério</h2>
       <input
         type="text"
-        placeholder="Nome do Minerio"
+        placeholder="Nome do Minério"
         value={nomedominerio}
         onChange={(e) => setNomedominerio(e.target.value)}
         required

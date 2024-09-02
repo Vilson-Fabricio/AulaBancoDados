@@ -38,14 +38,14 @@ export default function ReadMinerios() {
 
   return (
     <div className='container'>
-      <h2>Lista de Matrículas</h2>
+      <h1>Lista de Minérios</h1>
       <table  className="table-container" border="1">
         <thead>
           <tr>
-            <th>Código Matrícula</th>
-            <th>Nome do Aluno</th>
-            <th>Turma</th>
-            <th>Curso</th>
+            <th>Código do Minério</th>
+            <th>Nome do Minério</th>
+            <th>Tamanho</th>
+            <th>Tipo</th>
             <th>Ações</th>
           </tr>
         </thead>

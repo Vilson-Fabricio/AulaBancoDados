@@ -23,48 +23,48 @@ export default function UpdateMinerios() {
       });
       if (response.ok) {
         alert('Matrícula atualizada com sucesso!');
-        navigate("/matriculas");
+        navigate("/minerios");
       } else {
-        alert('Erro ao atualizar matrícula.');
+        alert('Erro ao atualizar minério.');
       }
     } catch (error) {
-      console.error('Erro ao atualizar matrícula:', error);
+      console.error('Erro ao atualizar minério:', error);
     }
   };
 
   return (
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
-      <h2>Atualizar Matrícula</h2>
+      <h2>Atualizar Minério</h2>
       <input
         type="text"
-        placeholder="ID da Matrícula"
+        placeholder="ID do Minério"
         value={id}
         onChange={(e) => setId(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Nome do Aluno"
+        placeholder="Nome do Minério"
         value={nomedominerio}
-        onChange={(e) => setAluno(e.target.value)}
+        onChange={(e) => setNomedominerio(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Turma"
+        placeholder="Tamanho"
         value={tamanho}
-        onChange={(e) => setTurma(e.target.value)}
+        onChange={(e) => setTamanho(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Curso"
+        placeholder="Tipo"
         value={tipo}
-        onChange={(e) => setCurso(e.target.value)}
+        onChange={(e) => setTipo(e.target.value)}
         required
       />
-      <button type="submit">Atualizar Matrícula</button>
+      <button type="submit">Atualizar Minério</button>
     </form>
     </div>
   );

@@ -30,7 +30,7 @@ app.use(express.json());
 app.post('/minerios', async (req, res) => {
   try {
     const novoMinerios = req.body;
-    const minerios = await collection.find().toArray();
+    const result = await collection.insertOne(novoMinerios)
     //complete o código
     
     res.status(201).json({ message: 'Matrícula criada com sucesso', matriculaId: result.insertedId });
@@ -41,7 +41,7 @@ app.post('/minerios', async (req, res) => {
 
 app.get('/minerios', async (req, res) => {
   try {
-    const minerios = await collection.findOne({ _id: newId });
+    const minerios = await collection.find().toArray();
     //complete o código
     res.status(200).json(minerios);
   } catch (err) {
